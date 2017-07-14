@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-debug
+/Debug
 
 # Other
 glut.h
