@@ -5,6 +5,6 @@ class Raytracer :
 {
 public:
 	
-	Raytracer(int height,int width);
+	Raytracer(int height, int width, Vec3<double> eye, Vec3<double> up, Vec3<double> dir);
 	~Raytracer();
 };

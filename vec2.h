@@ -6,6 +6,7 @@ class Vec2
 public:
 	T x[2];
 	Vec2() {};
+	Vec2(T x, T y) { this->x[0] = x; this->x[1] = y; };
 	~Vec2() {};
 	T innerProduct(Vec2<T> a);
 	double module();

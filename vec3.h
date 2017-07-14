@@ -6,6 +6,7 @@ class Vec3
 public:
 	T x[3];
 	Vec3() {};
+	Vec3(T x, T y, T z) { this->x[0] = x; this->x[1] = y; this->x[2] = z; };
 	~Vec3() {};
 	T innerProduct(Vec3<T> a);
 	Vec3<T> outerProduct(Vec3<T> a);

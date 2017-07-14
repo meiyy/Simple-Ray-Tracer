@@ -1,6 +1,6 @@
 #include "display.h"
 
-#include "glut.h"
+#include <gl/glut.h>
 
 
 /*

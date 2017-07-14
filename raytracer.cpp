@@ -2,10 +2,10 @@
 
 
 
-Raytracer::Raytracer(int height,int width):Renderer(height,width)
+Raytracer::Raytracer(int height, int width, Vec3<double> eye, Vec3<double> up, Vec3<double> dir) : Renderer(height, width, eye, up, dir)
 {
-}
 
+}
 
 Raytracer::~Raytracer()
 {
