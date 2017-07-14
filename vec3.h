@@ -1,13 +1,12 @@
 #pragma once
 #include <cmath>
-
 template<class T>
 class Vec3
 {
 public:
 	T x[3];
-	Vec3();
-	~Vec3();
+	Vec3() {};
+	~Vec3() {};
 	T innerProduct(Vec3<T> a);
 	Vec3<T> outerProduct(Vec3<T> a);
 	double module();
@@ -15,16 +14,6 @@ public:
 	Vec3<T> operator-(Vec3<T> a);
 	Vec3<T> operator+(Vec3<T> a);
 };
-
-template<class T>
-Vec3<T>::Vec3()
-{
-}
-
-template<class T>
-Vec3<T>::~Vec3()
-{
-}
 
 template<class T>
 Vec3<T> Vec3<T>::outerProduct(Vec3<T> a)
@@ -56,7 +45,7 @@ Vec3<T>& Vec3<T>::norm()
 template<class T>
 inline Vec3<T> Vec3<T>::operator-(Vec3<T> a)
 {
-	Vec3<T> ans=*this;
+	Vec3<T> ans = *this;
 	for (int i = 0; i < 3; i++)
 	{
 		ans.x[i] -= a.x[i];

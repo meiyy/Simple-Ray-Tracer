@@ -21,12 +21,6 @@
     <ClInclude Include="renderer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="display.cpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="renderer.cpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="raytracer.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -43,6 +37,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="vec3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="vec2.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,6 +60,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="sphere.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="display.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

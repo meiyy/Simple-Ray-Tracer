@@ -36,6 +36,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="surface.h" />
+    <ClInclude Include="vec2.h" />
     <ClInclude Include="vec3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

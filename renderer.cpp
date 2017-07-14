@@ -3,6 +3,7 @@
 
 void Renderer::render(unsigned char* buf)
 {
+	static int t = 0;
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
