@@ -4,19 +4,19 @@
 void Renderer::render(unsigned char* buf)
 {
 	static int t = 0;
-	for (int i = 0; i < height; i++)
+	for (int i = 0; i < pixelsY; i++)
 	{
-		for (int j = 0; j < width; j++)
+		for (int j = 0; j < pixelsX; j++)
 		{
 			if (std::abs(i + j - t)<10)
-				buf[(i*width + j) * 3] = 255;
+				buf[(i*pixelsX + j) * 3] = 255;
 			else
-				buf[(i*width + j) * 3] = 0;
-			buf[(i*width + j) * 3 + 1] = 0;
-			buf[(i*width + j) * 3 + 2] = 0;
+				buf[(i*pixelsX + j) * 3] = 0;
+			buf[(i*pixelsX + j) * 3 + 1] = 0;
+			buf[(i*pixelsX + j) * 3 + 2] = 0;
 		}
 	}
 	t += 2;
-	if (t == height + width)
+	if (t == pixelsY + pixelsX)
 		t = 0;
 }

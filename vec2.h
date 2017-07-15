@@ -13,7 +13,32 @@ public:
 	Vec2<T>& norm();
 	Vec2<T> operator-(Vec2<T> a);
 	Vec2<T> operator+(Vec2<T> a);
+	Vec2<T> operator*(T a);
+	Vec2<T> operator/(T a);
 };
+
+template<class T>
+inline Vec2<T> Vec2<T>::operator*(T a)
+{
+	Vec3<T> ans = *this;
+	for (int i = 0; i < 2; i++)
+	{
+		ans.x[i] *= a;
+	}
+	return ans;
+}
+
+template<class T>
+inline Vec2<T> Vec2<T>::operator/(T a)
+{
+	Vec3<T> ans = *this;
+	for (int i = 0; i < 2; i++)
+	{
+		ans.x[i] /= a;
+	}
+	return ans;
+}
+
 
 template<class T>
 double Vec2<T>::module()

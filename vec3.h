@@ -14,6 +14,8 @@ public:
 	Vec3<T>& norm();
 	Vec3<T> operator-(Vec3<T> a);
 	Vec3<T> operator+(Vec3<T> a);
+	Vec3<T> operator*(T a);
+	Vec3<T> operator/(T a);
 };
 
 template<class T>
@@ -61,6 +63,28 @@ inline Vec3<T> Vec3<T>::operator+(Vec3<T> a)
 	for (int i = 0; i < 3; i++)
 	{
 		ans.x[i] += a.x[i];
+	}
+	return ans;
+}
+
+template<class T>
+inline Vec3<T> Vec3<T>::operator*(T a)
+{
+	Vec3<T> ans = *this;
+	for (int i = 0; i < 3; i++)
+	{
+		ans.x[i] *= a;
+	}
+	return ans;
+}
+
+template<class T>
+inline Vec3<T> Vec3<T>::operator/(T a)
+{
+	Vec3<T> ans = *this;
+	for (int i = 0; i < 3; i++)
+	{
+		ans.x[i] /= a;
 	}
 	return ans;
 }
