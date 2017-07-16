@@ -39,6 +39,12 @@
     <ClInclude Include="vec2.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="lightsource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="meterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,6 +66,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="renderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="lightsource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="meterial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

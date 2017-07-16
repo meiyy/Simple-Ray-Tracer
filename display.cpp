@@ -1,5 +1,4 @@
 #include "display.h"
-#include "surface.h"
 #include <gl/glut.h>
 #include <ctime>
 #include <iostream>
@@ -7,23 +6,38 @@
 /*
 * variables
 */
-
+/* Basic variables and objects */
 static std::string title;
 static int height;
 static int width;
 static Renderer *renderer;
 static GLubyte *buf;
-const int maxnum = 100;
-Surface *surfaces[maxnum];
+
+/* Surface */
+const int maxsurface = 100;
+Surface *surfaces[maxsurface];
 int numOfSurface = 0;
+
+/* Frame rate */
 int cntFrame = 0;
 clock_t preTime = 0;
+
+/* Light */
+const int maxlight = 10;
+LightSource *lightsources[maxlight];
+int numoflights = 0;
+LightSource ambient(Vec3<double>(0,0,0), Vec3<double>(0, 0, 0), Vec3<int>(200, 200, 200));
+
 /*
 * function implementation
 */
+void setAmbientLight(LightSource light)
+{
+	ambient = light;
+}
 bool addSurface(Surface *surface)
 {
-	if (numOfSurface == maxnum)
+	if (numOfSurface == maxsurface)
 	{
 		delete surface;
 		return false;
@@ -32,8 +46,25 @@ bool addSurface(Surface *surface)
 	return true;
 }
 
+bool addLight(LightSource *light)
+{
+	if (numoflights == maxlight)
+	{
+		delete light;
+		return false;
+	}
+	lightsources[numoflights++] = light;
+	return true;
+}
+
 void Animate()
 {
+	static double cnt = 0;
+	cnt+=0.01;
+	Vec3<double> tmp(3 * std::sin(cnt), 1, 3 * cos(cnt) + 3);
+	Vec3<double> tmp2(-std::sin(cnt), -1, -cos(cnt));
+	lightsources[0]->pos = tmp;
+	lightsources[0]->dir = tmp2;
 	if (cntFrame == 0)
 		preTime = clock();
 	if (cntFrame == 10)
@@ -43,12 +74,7 @@ void Animate()
 		preTime = clock();
 	}
 	cntFrame++;
-	renderer->renderPerspective(buf,surfaces,numOfSurface);
-	/*
-	for (int i = 0; i < 10; i++)
-		std::cout << (int)buf[i+1000] << " ";
-	std::cout << std::endl << "!!!!!!!!!!!!!!!!!" << std::endl;
-	*/
+	renderer->renderPerspective(buf,surfaces,numOfSurface,lightsources,numoflights);
 	glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, buf);
 	glutSwapBuffers();
 	glutPostRedisplay();

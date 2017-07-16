@@ -1,7 +1,7 @@
 #include <cmath>
 #include "renderer.h"
 
-void Renderer::renderPerspective(unsigned char* buf, Surface **surfaces, int numOfSurface)
+void Renderer::renderPerspective(unsigned char* buf, Surface **surfaces, int numOfSurface,LightSource **lights,int numOfLights)
 {
 	static int t = 0;
 	for (int i = 0; i < pixelsY; i++)
@@ -20,7 +20,7 @@ void Renderer::renderPerspective(unsigned char* buf, Surface **surfaces, int num
 	if (t == pixelsY + pixelsX)
 		t = 0;
 }
-void Renderer::renderOrtho(unsigned char* buf, Surface **surfaces, int numOfSurface)
+void Renderer::renderOrtho(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights)
 {
 	static int t = 0;
 	for (int i = 0; i < pixelsY; i++)

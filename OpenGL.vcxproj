@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="lightsource.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="meterial.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="sphere.cpp" />
     <ClCompile Include="surface.cpp" />
@@ -27,6 +29,8 @@
   <ItemGroup>
     <ClInclude Include="display.h" />
     <ClCompile Include="display.cpp" />
+    <ClInclude Include="lightsource.h" />
+    <ClInclude Include="meterial.h" />
     <ClInclude Include="raytracer.h" />
     <ClInclude Include="renderer.h" />
     <ClCompile Include="raytracer.cpp" />
