@@ -48,6 +48,9 @@
     <ClInclude Include="matrix3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="triangle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +78,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="meterial.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="triangle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
