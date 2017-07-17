@@ -30,6 +30,7 @@
     <ClInclude Include="display.h" />
     <ClCompile Include="display.cpp" />
     <ClInclude Include="lightsource.h" />
+    <ClInclude Include="matrix3.h" />
     <ClInclude Include="meterial.h" />
     <ClInclude Include="raytracer.h" />
     <ClInclude Include="renderer.h" />

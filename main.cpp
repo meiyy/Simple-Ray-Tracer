@@ -2,7 +2,7 @@
 #include "raytracer.h"
 #include "sphere.h"
 
-int height = 300, width = 400;
+int height = 600, width = 800;
 
 void initSurfaces()
 {
