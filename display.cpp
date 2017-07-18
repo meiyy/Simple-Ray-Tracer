@@ -59,7 +59,7 @@ bool addLight(LightSource *light)
 
 void Animate()
 {
-	static double cnt = 0;
+	static double cnt = 1.4;
 	cnt+=0.01;
 	Vec3<double> tmp(3 * std::sin(cnt), 1, 3 * cos(cnt) + 3);
 	Vec3<double> tmp2(-std::sin(cnt), -1, -cos(cnt));

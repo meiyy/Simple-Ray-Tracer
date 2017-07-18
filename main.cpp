@@ -29,8 +29,8 @@ void initSurfaces()
 		Vec3<double>(2, 0, 1),
 		Vec3<double>(-2, 0, 5), 
 		Meterial(
-			Vec3<double>(0.2, 0.2, 0.2), 
-			Vec3<double>(0.4, 0.4, 0.4), 
+			Vec3<double>(0.2, 0.2, 0.2),
+			Vec3<double>(0.4, 0.4, 0.4),
 			Vec3<double>(0.6, 0.6, 0.6), 5)
 	));
 	addSurface(new Triangle(
