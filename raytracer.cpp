@@ -45,7 +45,7 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 		unsigned char colors[3];
 		for (int c = 0; c < 3; c++)
 		{
-			colors[c] = std::min(255, (int)(met.ambient.x[c] * amb[c]));
+			colors[c] = std::min(255, (int)(met.ambient.x[c] * amb[c] ));
 		}
 		for (int k = 0; k < numOfLights; k++)
 		{
@@ -72,7 +72,11 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 				}
 			}
 		}
-		return Vec3<unsigned char>(colors[0], colors[1], colors[2]);
+		return Vec3<unsigned char>(
+			(unsigned char)(colors[0] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[0]),
+			(unsigned char)(colors[1] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[1]),
+			(unsigned char)(colors[2] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[2])
+			);
 	}
 	else
 	{

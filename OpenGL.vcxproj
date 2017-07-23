@@ -22,6 +22,7 @@
     <ClCompile Include="lightsource.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meterial.cpp" />
+    <ClCompile Include="pattern.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="sphere.cpp" />
     <ClCompile Include="surface.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="lightsource.h" />
     <ClInclude Include="matrix3.h" />
     <ClInclude Include="meterial.h" />
+    <ClInclude Include="pattern.h" />
     <ClInclude Include="raytracer.h" />
     <ClInclude Include="renderer.h" />
     <ClCompile Include="raytracer.cpp" />
