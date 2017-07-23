@@ -10,6 +10,7 @@ private:
 public:
 	Raytracer(int pixelsY, int pixelsX, double height, double width, double focal, Vec3<double> eye, Vec3<double> up, Vec3<double> dir);
 	~Raytracer();
+	Vec3<unsigned char> solve(Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights, Vec3<double> curPos, Vec3<double> curDir);
 	void renderPerspective(unsigned char* buf, Surface **surfaces, int numOfSurface, LightSource **lights, int numOfLights);
 	void renderOrtho(unsigned char* buf, Surface **surfaces, int numOfSurface, LightSource **lights, int numOfLights);
 };
