@@ -38,7 +38,7 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 	Vec3<double> ansPos = eye + curDir*ansT;
 	if (id >= 0) // If the nearest object exists:
 	{
-		Meterial &met = surfaces[id]->meterial;
+		Meterial &met = meterials[surfaces[id]->meterial];
 		const int *amb = ambient.intensity.x;
 
 		// RGB
@@ -64,18 +64,20 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 				}
 				if (tt < 0)
 				{
-					colors[c] = std::min(255, (int)(colors[c] + lights[k]->intensity.x[c] *
-						met.diffuse.x[c] * std::fmax(0., ansN.innerProduct(lightdir))));
 					if (lightdir.innerProduct(ansN) > 0)
+					{
+						colors[c] = std::min(255, (int)(colors[c] + lights[k]->intensity.x[c] *
+							met.diffuse.x[c] * std::fmax(0., ansN.innerProduct(lightdir))));
 						colors[c] = std::min(255, (int)(colors[c] + lights[k]->intensity.x[c] *
 							met.specular.x[c] * std::pow(std::fmax(0, ansN.innerProduct((V + lightdir).norm())), met.pvalue)));
+					}
 				}
 			}
 		}
 		return Vec3<unsigned char>(
-			(unsigned char)(colors[0] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[0]),
-			(unsigned char)(colors[1] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[1]),
-			(unsigned char)(colors[2] * met.pt.getPixel(ansPos.x[0], ansPos.x[2]).x[2])
+			(unsigned char)(colors[0] ),
+			(unsigned char)(colors[1] ),
+			(unsigned char)(colors[2] )
 			);
 	}
 	else

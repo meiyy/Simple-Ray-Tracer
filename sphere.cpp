@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-Sphere::Sphere(Vec3<double> pos, double radius, Meterial meterial)
+Sphere::Sphere(Vec3<double> pos, double radius, int meterial)
 	:Surface(pos,meterial),radius(radius)
 {
 }

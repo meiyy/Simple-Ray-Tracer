@@ -30,6 +30,6 @@ public:
 		this->up = this->right.outerProduct(this->dir)*-1;
 	}
 	~Renderer() {}
-	virtual void renderPerspective(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights);
-	virtual void renderOrtho(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights);
+	virtual void renderPerspective(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights)=0;
+	virtual void renderOrtho(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights)=0;
 };

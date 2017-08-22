@@ -1,5 +1,5 @@
 #include "display.h"
-#include <gl/glut.h>
+#include <GL/glut.h>
 #include <ctime>
 #include <iostream>
 
@@ -12,6 +12,9 @@ static int height;
 static int width;
 static Renderer *renderer;
 static GLubyte *buf;
+
+/* Meterial */
+std::vector<Meterial> meterials;
 
 /* Surface */
 const int maxsurface = 100;
@@ -26,7 +29,7 @@ clock_t preTime = 0;
 const int maxlight = 10;
 LightSource *lightsources[maxlight];
 int numoflights = 0;
-LightSource ambient(Vec3<double>(0,0,0), Vec3<double>(0, 0, 0), Vec3<int>(200, 200, 200));
+LightSource ambient(Vec3<double>(0,0,0), Vec3<double>(0, 0, 0), Vec3<int>(100, 100, 100));
 
 /*
 * function implementation

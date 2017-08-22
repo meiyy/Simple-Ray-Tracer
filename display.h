@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <string>
 #include "renderer.h"
 #include "lightsource.h"
@@ -9,4 +10,5 @@ void work(Renderer *renderer);
 bool addSurface(Surface *surface);
 bool addLight(LightSource *light);
 extern LightSource ambient;
+extern std::vector<Meterial> meterials;
 void setAmbientLight(LightSource light);

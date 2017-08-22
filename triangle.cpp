@@ -51,7 +51,7 @@ void Triangle::intersect(const Vec3<double>& start, const Vec3<double>& dir, dou
 	n = (a - b).outerProduct(c - b).norm();
 }
 
-Triangle::Triangle(Vec3<double> a, Vec3<double> b, Vec3<double> c, Meterial met)
+Triangle::Triangle(Vec3<double> a, Vec3<double> b, Vec3<double> c, int met)
 	:a(a), b(b), c(c), Surface(a,met)
 {
 
