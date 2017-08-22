@@ -15,7 +15,7 @@ Sphere::~Sphere()
 }
 
 void Sphere::intersect(const Vec3<double> &start, const Vec3<double> &dir, double t0, double t1,
-	double &t, Vec3<double> &n)
+	double &t, Vec3<double> &n)const
 {
 	Vec3<double> dis = start - pos;
 	double A = dir.innerProduct(dir),

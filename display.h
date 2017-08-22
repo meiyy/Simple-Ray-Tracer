@@ -7,8 +7,8 @@
 
 void init(std::string windowTitle, int windowHeight, int windowWidth, int argc, char** argv);
 void work(Renderer *renderer);
-bool addSurface(Surface *surface);
-bool addLight(LightSource *light);
 extern LightSource ambient;
 extern std::vector<Meterial> meterials;
+extern std::vector<LightSource> lightsources;
+extern std::vector<Surface*> surfaces;
 void setAmbientLight(LightSource light);

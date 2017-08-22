@@ -12,7 +12,7 @@ void SurfaceGroup::addSurface(Surface * suraface)
 		suf[tmp++] = suraface;
 }
 
-void SurfaceGroup::intersect(const Vec3<double>& start, const Vec3<double>& dir, double t0, double t1, double & t, Vec3<double>& n)
+void SurfaceGroup::intersect(const Vec3<double>& start, const Vec3<double>& dir, double t0, double t1, double & t, Vec3<double>& n)const
 {
 	t = t1 + 1;
 	for (int i = 0; i < tmp; i++)

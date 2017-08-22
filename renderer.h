@@ -3,6 +3,7 @@
 #include "vec3.h"
 #include "surface.h"
 #include "lightsource.h"
+#include <vector>
 
 class Renderer
 {
@@ -26,10 +27,10 @@ public:
 		center.x[1] = pixelsX / 2;
 		this->up = this->up.norm();
 		this->dir = this->dir.norm();
-		this->right = this->dir.outerProduct(this->up)*-1;
-		this->up = this->right.outerProduct(this->dir)*-1;
+		this->right = this->dir.outerProduct(this->up) * (-1);
+		this->up = this->right.outerProduct(this->dir) * (-1);
 	}
 	~Renderer() {}
-	virtual void renderPerspective(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights)=0;
-	virtual void renderOrtho(unsigned char * buf, Surface ** surfaces, int numOfSurface, LightSource ** lights, int numOfLights)=0;
+
+	virtual void renderPerspective(unsigned char* buf, const std::vector<Surface*> &surfaces, const std::vector<LightSource> &lights)=0;
 };

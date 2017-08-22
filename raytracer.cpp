@@ -14,7 +14,7 @@ Raytracer::~Raytracer()
 {
 }
 
-Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, LightSource **lights, int numOfLights, Vec3<double> curPos, Vec3<double> curDir)
+Vec3<unsigned char> Raytracer::solve(const std::vector<Surface*> &surfaces, const std::vector<LightSource> &lights, Vec3<double> curPos, Vec3<double> curDir)
 {
 	double t0 = curDir.module(), t1 = 1e3;
 	curDir = curDir.norm();
@@ -23,7 +23,7 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 	double ansT = -1;
 	Vec3<double> ansN;
 	int id = -1;
-	for (int k = 0; k < numOfSurface; k++) // For each object:
+	for (int k = 0; k < surfaces.size(); k++) // For each object:
 	{
 		double t;
 		Vec3<double> n;
@@ -47,15 +47,15 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 		{
 			colors[c] = std::min(255, (int)(met.ambient.x[c] * amb[c] ));
 		}
-		for (int k = 0; k < numOfLights; k++)
+		for (int k = 0; k < lights.size(); k++)
 		{
-			Vec3<double> lightdir = lights[k]->pos - ansPos;
+			Vec3<double> lightdir = lights[k].pos - ansPos;
 			double dis = lightdir.module();
 			lightdir = lightdir.norm();
 			for (int c = 0; c < 3; c++)
 			{
 				double tt = -1;
-				for (int kk = 0; kk < numOfSurface; kk++) // For each object:
+				for (int kk = 0; kk < surfaces.size(); kk++) // For each object:
 				{
 					double t;
 					Vec3<double> n;
@@ -66,9 +66,9 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 				{
 					if (lightdir.innerProduct(ansN) > 0)
 					{
-						colors[c] = std::min(255, (int)(colors[c] + lights[k]->intensity.x[c] *
+						colors[c] = std::min(255, (int)(colors[c] + lights[k].intensity.x[c] *
 							met.diffuse.x[c] * std::fmax(0., ansN.innerProduct(lightdir))));
-						colors[c] = std::min(255, (int)(colors[c] + lights[k]->intensity.x[c] *
+						colors[c] = std::min(255, (int)(colors[c] + lights[k].intensity.x[c] *
 							met.specular.x[c] * std::pow(std::fmax(0, ansN.innerProduct((V + lightdir).norm())), met.pvalue)));
 					}
 				}
@@ -87,7 +87,7 @@ Vec3<unsigned char> Raytracer::solve(Surface **surfaces, int numOfSurface, Light
 	}
 }
 
-void Raytracer::renderPerspective(unsigned char* buf, Surface **surfaces, int numOfSurface, LightSource **lights, int numOfLights)
+void Raytracer::renderPerspective(unsigned char* buf, const std::vector<Surface*> &surfaces, const std::vector<LightSource> &lights)
 {
 	static const double ra = 1.0/3;
 	static const double bs = 1.0/9;
@@ -116,7 +116,7 @@ void Raytracer::renderPerspective(unsigned char* buf, Surface **surfaces, int nu
 				double dx = width / pixelsX * (j + offset[k][l][1] - center.x[1]);
 				Vec3<double> curPos = base + up * -dy + right * dx;
 				Vec3<double> curDir = curPos - eye;
-				Vec3<unsigned char> ans = solve(surfaces, numOfSurface, lights, numOfLights, curPos, curDir);
+				Vec3<unsigned char> ans = solve(surfaces, lights, curPos, curDir);
 				c0 += (ans.x[0] * weight[k][l]);
 				c1 += (ans.x[1] * weight[k][l]);
 				c2 += (ans.x[2] * weight[k][l]);
@@ -132,48 +132,3 @@ void Raytracer::renderPerspective(unsigned char* buf, Surface **surfaces, int nu
 	}
 }
 
-
-void Raytracer::renderOrtho(unsigned char* buf, Surface **surfaces, int numOfSurface, LightSource **lights, int numOfLights)
-{
-	for (int i = 0, bufpos = 0; i < pixelsY; i++)
-	{
-		for (int j = 0; j < pixelsX; j++) // For each pixel:
-		{
-			double dy = height / pixelsY * (i - center.x[0]);
-			double dx = width / pixelsX * (j - center.x[1]);
-			Vec3<double> curPos = eye + up * -dy + right * dx;
-			double t0 = 1e-3, t1 = 1e3;
-
-			double ansT = -1;
-			Vec3<double> ansN;
-			int id = -1;
-			for (int k = 0; k < numOfSurface; k++) // For each object:
-			{
-				double t;
-				Vec3<double> n;
-				surfaces[k]->intersect(curPos, dir, t0, t1, t, n);
-				if (t > 0 && (id == -1 || t < ansT))
-				{
-					ansT = t;
-					ansN = n;
-					id = k;
-				}
-			}
-
-			if (id >= 0) // If the nearest object exists:
-			{
-				// RGB
-				buf[bufpos++] = 255;
-				buf[bufpos++] = 0;
-				buf[bufpos++] = 0;
-			}
-			else
-			{
-				// RGB
-				buf[bufpos++] = bgcolor.x[0];
-				buf[bufpos++] = bgcolor.x[1];
-				buf[bufpos++] = bgcolor.x[2];
-			}
-		}
-	}
-}

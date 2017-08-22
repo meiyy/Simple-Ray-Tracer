@@ -2,7 +2,7 @@
 #include "matrix3.h"
 
 
-void Triangle::intersect(const Vec3<double>& start, const Vec3<double>& dir, double t0, double t1, double & t, Vec3<double>& n)
+void Triangle::intersect(const Vec3<double>& start, const Vec3<double>& dir, double t0, double t1, double & t, Vec3<double>& n)const
 {
 	double dataA[3][3] = {
 		{ a.x[0] - b.x[0], a.x[0] - c.x[0], dir.x[0] }
